@@ -2,10 +2,9 @@
 
 /**
  * @file
- * Install functions for the CE Users module.
+ * Install functions for the CE LocalGov Drupal Config module.
  */
 
-use Drupal\user\Entity\User;
 use Drupal\user\Entity\Role;
 use Drupal\node\Entity\Node;
 
