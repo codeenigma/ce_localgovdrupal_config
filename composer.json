@@ -1,7 +1,7 @@
 {
     "name": "codeenigma/ce_localgovdrupal_config",
     "description": "Drupal module to make small tweaks to LocalGov Drupal on install.",
-    "type": "drupal-module",
+    "type": "drupal-custom-module",
     "license": "GPL-2.0-or-later",
     "authors": [
         {
@@ -13,6 +13,11 @@
         {
             "name": "Dionisio Fernandez (dioni)",
             "homepage": "https://www.drupal.org/u/dioni",
+            "role": "Co-maintainer"
+        },
+        {
+            "name": "Greg Harvey (greg.harvey)",
+            "homepage": "https://www.drupal.org/u/gregharvey",
             "role": "Co-maintainer"
         }
     ],
