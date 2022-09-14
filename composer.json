@@ -1,0 +1,24 @@
+{
+    "name": "codeenigma/ce_localgovdrupal_config",
+    "description": "Drupal module to make small tweaks to LocalGov Drupal on install.",
+    "type": "drupal-module",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "Code Enigma (codeenigma)",
+            "homepage": "https://www.drupal.org/code-enigma",
+	    "email": "hello@codeenigma.com",
+            "role": "Maintainer"
+        },
+        {
+            "name": "Dionisio Fernandez (dioni)",
+            "homepage": "https://www.drupal.org/u/dioni",
+            "role": "Co-maintainer"
+        }
+    ],
+    "homepage": "https://github.com/codeenigma/ce_localgovdrupal_config",
+    "support": {
+        "issues": "https://github.com/codeenigma/ce_localgovdrupal_config/issues",
+        "source": "https://github.com/codeenigma/ce_localgovdrupal_config"
+    }
+}
