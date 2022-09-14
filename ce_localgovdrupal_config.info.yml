@@ -1,0 +1,5 @@
+name: CE LocalGov Drupal Config
+type: module
+description: Module by Code Enigma to make small tweaks to LocalGov Drupal on install.
+core_version_requirement: ^8.8 || ^9
+

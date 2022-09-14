@@ -1,0 +1,62 @@
+<?php
+
+/**
+ * @file
+ * Install functions for the CE Users module.
+ */
+
+use Drupal\user\Entity\User;
+use Drupal\user\Entity\Role;
+use Drupal\node\Entity\Node;
+
+/**
+ * Implements hook_install().
+ *
+ * @see system_install()
+ */
+function ce_localgovdrupal_config_install() {
+  $language = \Drupal::languageManager()->getCurrentLanguage()->getId();
+  $url = '/localgov-drupal-demo';
+
+  // Make sure the homepage is always published.
+  $node_path = \Drupal::service('path_alias.manager')->getPathByAlias($url);
+  if (preg_match('/node\/(\d+)/', $node_path, $matches)) {
+    // This will load the node object.
+    $node = Node::load($matches[1]);
+    if (!empty($node)) {
+      // get latest revision ID
+      $latest_vid = \Drupal::entityTypeManager()->getStorage('node')->getLatestRevisionId($node->id());
+
+      // load latest revision
+      $latest_revision = \Drupal::entityTypeManager()->getStorage('node')->loadRevision($latest_vid);
+
+      // set latest revision to published if is draft
+      $is_draft = $latest_revision->moderation_state->value == 'draft';
+      if ($is_draft) {
+        $latest_revision->set('moderation_state', 'published')->save();
+      }
+    }
+  }
+
+  // Set site name because drush si uses 'Site Install'.
+  \Drupal::service('config.factory')
+    ->getEditable('system.site')
+    ->set('name', 'LocalGov Drupal')
+    ->save();
+
+  // Only administrator or User manager can create users.
+  \Drupal::service('config.factory')
+    ->getEditable('user.settings')
+    ->set('register', 'admin_only')
+    ->save();
+
+  // #61729: Create role 'lgd_manager', as a clone of standard 'administrator'.
+  $role = Role::create([
+    'id' => 'lgd_manager',
+    'label' => 'LocalGov Drupal Manager',
+    'is_admin' => TRUE,
+    'weight' => 6,
+  ]);
+  $role->save();
+}
+
